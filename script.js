@@ -5,7 +5,7 @@
 
 const hasCatalog = typeof PRODUCTS !== 'undefined';
 const WHATSAPP_NUMBER = typeof STORE !== 'undefined' ? STORE.whatsapp : '201102523873';
-const SHIPPING = typeof STORE !== 'undefined' ? STORE.shipping : 80;
+const SHIPPING = typeof STORE !== 'undefined' ? STORE.shipping : 100;
 
 // ---------- أدوات عامة ----------
 function escapeHtml(str) {
