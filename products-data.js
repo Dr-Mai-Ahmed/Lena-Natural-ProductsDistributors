@@ -89,7 +89,7 @@ const PRODUCTS = [
     "id": 5,
     "name": "بادي باتر",
     "short": "50 مل",
-    "price": 65,
+    "price": 50,
     "category": "body",
     "image": "images/Body-products/img(40).jpeg",
     "details": {
@@ -188,7 +188,7 @@ const PRODUCTS = [
     "id": 9,
     "name": "الصابون المغربي",
     "short": "250 جم",
-    "price": 100,
+    "price": 75,
     "category": "body",
     "image": "images/Body-products/img(8).jpeg",
     "details": {
@@ -261,7 +261,7 @@ const PRODUCTS = [
     "id": 13,
     "name": "كحل الأثمد والغنجي",
     "short": "",
-    "price": 160,
+    "price": 125,
     "category": "beauty",
     "image": "images/Cosmetic-products/img(12).jpeg",
     "details": {
@@ -391,7 +391,7 @@ const PRODUCTS = [
     "short": "",
     "price": 95,
     "category": "hair",
-    "image": "images/Hair-products/img(15).jpeg",
+    "image": "images/Hair-products/img(19).jpeg",
     "details": {
       "intro": [
         "ميكس زيوت طبيعية للعناية بفروة الرأس والشعر: تغذية وترطيب وعناية بالفروة."
@@ -410,7 +410,7 @@ const PRODUCTS = [
     "id": 19,
     "name": "زيت شعر الأطفال",
     "short": "",
-    "price": 120,
+    "price": 90,
     "category": "hair",
     "image": "images/Hair-products/img(16).jpeg",
     "details": {
@@ -498,7 +498,7 @@ const PRODUCTS = [
     "short": "",
     "price": 130,
     "category": "hair",
-    "image": "images/Hair-products/img(19).jpeg",
+    "image": "images/Hair-products/img(15).jpeg",
     "details": {
       "intro": [
         "شعر انسيابي ولمعة حلوة كل يوم."
