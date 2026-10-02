@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- أساسيات -->
+<meta name="description" content="Lēna Natural — موقع الموزعين: أسعار التوزيع الخاصة بموزعي البراند فقط.">
+<meta name="author" content="Lēna Natural">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#8e44ad">
+<!-- أيقونة الموقع -->
+<link rel="icon" href="images/lena.jpg">
+    <title>موقع الموزعين | Lena Natural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1DNHRC4LC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y1DNHRC4LC');
+</script>
+</head>
+<body>
+
+    <div class="announcement-bar"><p><i class="fa-solid fa-lock"></i> هذا الموقع خاص بموزعي Lēna Natural فقط — الأسعار المعروضة هي أسعار التوزيع</p></div>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo"><a href="index.html">Lena <span>Natural</span> <small class="logo-tag">موزعين</small></a></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">الرئيسية</a></li>
+                    <li><a href="#products">قائمة الأسعار</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="header-search-container">
+                    <button type="button" id="searchIconBtn" class="cart-icon-btn" title="بحث" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن منتج..." aria-label="بحث عن منتج">
+                </div>
+                <button type="button" id="darkModeToggle" class="cart-icon-btn" title="تغيير المظهر" aria-label="تغيير المظهر"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="cart-icon-btn" title="سلة التسوق" aria-label="سلة التسوق">
+                    <i class="fa-solid fa-bag-shopping"></i><span id="cartCount" class="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-handshake"></i> بوابة الموزعين</span>
+            <h1>موقع <span>الموزعين</span> فقط</h1>
+            <p>أهلاً بيك في الموقع الخاص بموزعي Lēna Natural.<br>كل الأسعار هنا هي <strong>أسعار التوزيع</strong> المخصصة لأعضاء الجروب.</p>
+            <a href="#products" class="btn btn-primary">شوف قائمة أسعار التوزيع</a>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>قائمة أسعار التوزيع</h2>
+                <p>اختار القسم لعرض المنتجات وأسعارها</p>
+            </div>
+            <div class="category-boxes-container" id="categoryBoxes">
+            <button type="button" class="big-cat-box active" data-category="all"><i class="fa-solid fa-border-all"></i><h3>كل المنتجات</h3></button>
+            <button type="button" class="big-cat-box" data-category="body"><i class="fa-solid fa-hand-holding-heart"></i><h3>الجسم</h3></button>
+            <button type="button" class="big-cat-box" data-category="beauty"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>مستحضرات تجميلية</h3></button>
+            <button type="button" class="big-cat-box" data-category="hair"><i class="fa-solid fa-seedling"></i><h3>الشعر</h3></button>
+            <button type="button" class="big-cat-box" data-category="sensitive"><i class="fa-solid fa-shield-heart"></i><h3>أماكن حساسة</h3></button>
+            <button type="button" class="big-cat-box" data-category="skin"><i class="fa-solid fa-spa"></i><h3>البشرة</h3></button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+            </div>
+            <p class="no-results" id="noResults" hidden>لا توجد منتجات مطابقة لبحثك.</p>
+        </div>
+    </section>
+
+    <section class="pre-footer">
+        <div class="container">
+            <div class="pf-features">
+                <div class="pf-item"><span class="pf-icon"><i class="fa-solid fa-tags"></i></span><h4>أسعار توزيع خاصة</h4><p>أسعار مخصصة لأعضاء جروب الموزعين</p></div>
+                <div class="pf-item"><span class="pf-icon"><i class="fa-solid fa-truck-fast"></i></span><h4>توصيل لحد الباب</h4><p>بنوصّل طلبك بأمان وبسرعة</p></div>
+                <div class="pf-item"><span class="pf-icon"><i class="fa-brands fa-whatsapp"></i></span><h4>اطلب بسهولة</h4><p>أكد طلبك مباشرة على الواتساب</p></div>
+                <div class="pf-item"><span class="pf-icon"><i class="fa-solid fa-leaf"></i></span><h4>منتجات طبيعية</h4><p>براند مصنوع بحب وبمكونات طبيعية</p></div>
+            </div>
+            <div class="pf-cta">
+                <div class="pf-cta-text">
+                    <h2>عايز تنضم لجروب الموزعين؟ 🤝</h2>
+                    <p>كلمنا على واتساب وهنقولك على شروط التوزيع والأسعار.</p>
+                </div>
+                <div class="pf-cta-btns">
+                    <a href="https://wa.me/201102523873" target="_blank" rel="noopener" class="pf-btn pf-btn-wa"><i class="fa-brands fa-whatsapp"></i> تواصل معنا</a>
+                    <a href="#products" class="pf-btn pf-btn-light">قائمة الأسعار</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر (تم إضافته هنا) -->
+    <footer class="main-footer" id="contact">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Lena <span>Natural</span></h3>
+                <p>موقع خاص بموزعي براند Lēna Natural. الأسعار المعروضة للموزعين فقط.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/1CojQmh4c3/" aria-label="فيس بوك"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/lena_natural_products_?stkn=MTZ4OGcxOGtwcW82dQ==" aria-label="انستجرام"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/201102523873" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#products">قائمة الأسعار</a></li>
+                    <li><a href="checkout.html">سلة التسوق</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>تواصل معنا</h4>
+                <p><i class="fa-solid fa-phone"></i> +20 110 252 3873</p>
+                <p><i class="fa-solid fa-envelope"></i> maielsbawy819@gmail.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> القاهرة، مصر</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة  2026 Lena Natural Products</p>
+            <span>تم التطوير بواسطه [Mohammed soudi]</span>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="products-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

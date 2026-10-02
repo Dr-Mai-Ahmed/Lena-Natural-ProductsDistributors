@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب | Lēna Natural | موزعين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1DNHRC4LC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y1DNHRC4LC');
+</script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">Lēna <span>Natural</span></a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <!-- زر الوضع الداكن -->
+                <button type="button" id="darkModeToggle" class="cart-icon-btn" title="تغيير المظهر">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="index.html" class="btn-details" style="padding: 8px 15px;"><i class="fa-solid fa-arrow-right"></i> العودة للقائمة</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" style="padding: 50px 20px;">
+        <h2 style="color: var(--primary); margin-bottom: 30px; text-align: center;">طلب الموزعين — السلة وإتمام الطلب</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+            <!-- جدول المنتجات في السلة -->
+            <div style="background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">منتجاتك</h3>
+                <div id="cartItemsContainer">
+                    <!-- يتم تعبئتها ديناميكياً -->
+                </div>
+                <div style="margin-top: 20px; border-top: 2px solid var(--border-color); padding-top: 15px; font-size: 16px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>مجموع المنتجات:</span><span id="cartSubtotal">0 ج.م</span></div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>الشحن:</span><span id="cartShipping">0 ج.م</span></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold;"><span>الإجمالي الكلي:</span><span id="cartTotalPrice" style="color: var(--primary);">0 ج.م</span></div>
+                </div>
+            </div>
+
+            <!-- نموذج بيانات العميل -->
+            <div style="background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">بيانات الشحن والتوصيل</h3>
+                <form id="checkoutForm" onsubmit="submitOrder(event)">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">الاسم الكامل</label>
+                        <input type="text" id="clientName" required placeholder="اكتب اسمك الثلاثي" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; background: var(--white); color: var(--text-color);">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">رقم الهاتف (واتساب)</label>
+                        <input type="tel" id="clientPhone" required placeholder="010xxxxxxxx" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; background: var(--white); color: var(--text-color);">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">المحافظة / المدينة</label>
+                        <input type="text" id="clientCity" required placeholder="مثال: القاهرة، الجيزة..." style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; background: var(--white); color: var(--text-color);">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">العنوان بالتفصيل</label>
+                        <textarea id="clientAddress" required rows="3" placeholder="الشارع، رقم العقار، الدور..." style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; outline: none; background: var(--white); color: var(--text-color);"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer; text-align: center; font-size: 16px;">تأكيد الطلب عبر الواتساب <i class="fa-brands fa-whatsapp"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="products-data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function renderCheckoutCart() {
+            const container = document.getElementById('cartItemsContainer');
+            const subtotal = cartSubtotal();
+            const shipping = cart.length ? SHIPPING : 0;
+
+            container.innerHTML = cart.length ? cart.map(item => `
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px;border-bottom:1px solid var(--border-color);padding-bottom:10px;">
+                    <div style="display:flex;align-items:center;gap:12px;min-width:0;">
+                        <img src="${escapeHtml(item.image)}" alt="" style="width:50px;height:50px;object-fit:cover;border-radius:8px;">
+                        <div>
+                            <h4 style="font-size:15px;margin-bottom:3px;">${escapeHtml(item.name)}</h4>
+                            <span style="color:var(--gray);font-size:13px;">${item.price} ج.م × ${item.quantity} = ${item.price * item.quantity} ج.م</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="qty-box" style="transform:scale(.85);">
+                            <button type="button" data-qty="${item.id}" data-d="1" aria-label="زيادة">+</button>
+                            <span>${item.quantity}</span>
+                            <button type="button" data-qty="${item.id}" data-d="-1" aria-label="نقصان">−</button>
+                        </div>
+                        <button type="button" data-remove="${item.id}" aria-label="حذف" style="background:#ff7675;color:#fff;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`).join('')
+                : '<p style="color:var(--gray);text-align:center;padding:20px;">سلة التسوق فارغة حالياً.</p>';
+
+            document.getElementById('cartSubtotal').textContent = subtotal + ' ج.م';
+            document.getElementById('cartShipping').textContent = shipping + ' ج.م';
+            document.getElementById('cartTotalPrice').textContent = (subtotal + shipping) + ' ج.م';
+        }
+
+        document.getElementById('cartItemsContainer').addEventListener('click', e => {
+            const q = e.target.closest('[data-qty]'), r = e.target.closest('[data-remove]');
+            if (q) changeCartQty(q.dataset.qty, +q.dataset.d);
+            else if (r) removeFromCart(r.dataset.remove);
+            else return;
+            renderCheckoutCart();
+        });
+
+        function submitOrder(e) {
+            e.preventDefault();
+            if (!cart.length) { showToast('سلة التسوق فارغة!'); return; }
+
+            const val = id => document.getElementById(id).value.trim();
+            const phone = val('clientPhone').replace(/[\s-]/g, '');
+            if (!/^(\+?20|0)?1[0125]\d{8}$/.test(phone)) { showToast('رقم الهاتف غير صحيح'); document.getElementById('clientPhone').focus(); return; }
+
+            const subtotal = cartSubtotal();
+            let text = `*طلب موزع جديد — Lēna Natural* 🤝\n\n`;
+            text += `👤 *الاسم:* ${val('clientName')}\n📞 *الهاتف:* ${phone}\n🏙️ *المحافظة:* ${val('clientCity')}\n📍 *العنوان:* ${val('clientAddress')}\n\n🛍️ *المنتجات المطلوبة:*\n`;
+            cart.forEach(i => { text += `- ${i.name} (الكمية: ${i.quantity}) - ${i.price * i.quantity} ج.م\n`; });
+            text += `\n🛒 *مجموع المنتجات (أسعار التوزيع):* ${subtotal} ج.م\n🚚 *الشحن:* ${SHIPPING} ج.م\n💰 *الإجمالي الكلي:* ${subtotal + SHIPPING} ج.م`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCheckoutCart);
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج | Lēna Natural | موزعين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1DNHRC4LC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y1DNHRC4LC');
+</script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo"><a href="index.html">Lēna <span>Natural</span></a></div>
+            <div class="header-actions"><button type="button" id="darkModeToggle" class="cart-icon-btn" title="تغيير المظهر" aria-label="تغيير المظهر"><i class="fa-solid fa-moon"></i></button><a href="checkout.html" class="cart-icon-btn" title="سلة التسوق" aria-label="سلة التسوق">
+                    <i class="fa-solid fa-bag-shopping"></i><span id="cartCount" class="cart-badge">0</span>
+                </a></div>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 40px 20px 20px;">
+        <nav class="breadcrumb">
+            <a href="index.html">الرئيسية</a> <i class="fa-solid fa-angle-left"></i>
+            <a href="index.html#products">قائمة الأسعار</a> <i class="fa-solid fa-angle-left"></i>
+            <span id="bcName">تفاصيل المنتج</span>
+        </nav>
+
+        <div class="product-page" id="productPage">
+            <div class="pp-image"><img id="ppImg" src="" alt=""></div>
+            <div>
+                <span class="pp-cat" id="ppCat"></span>
+                <h1 class="pp-name" id="ppName"></h1>
+                <div class="pp-size" id="ppSize" hidden><i class="fa-solid fa-flask"></i> <span id="ppSizeText"></span></div>
+                <span class="price-tag">سعر التوزيع</span>
+                <div class="pp-price" id="ppPrice"></div>
+
+                <h3 class="pp-desc-title">تفاصيل المنتج</h3>
+                <div class="pp-desc" id="ppDesc"></div>
+
+                <div class="pp-badges">
+                    <span><i class="fa-solid fa-tags"></i>سعر توزيع</span><span><i class="fa-solid fa-leaf"></i>طبيعي 100%</span>
+                    <span><i class="fa-solid fa-truck-fast"></i>توصيل لباب البيت</span>
+                    <span><i class="fa-solid fa-heart"></i>مصنوع بحب</span>
+                </div>
+
+                <div class="pp-qty-row">
+                    <strong>الكمية:</strong>
+                    <div class="qty-box">
+                        <button type="button" onclick="changeQty(1)" aria-label="زيادة">+</button>
+                        <span id="qtyVal">1</span>
+                        <button type="button" onclick="changeQty(-1)" aria-label="نقصان">−</button>
+                    </div>
+                </div>
+
+                <div class="pp-actions">
+                    <button type="button" class="btn btn-primary" onclick="addToCart(product.id, qty)"><i class="fa-solid fa-bag-shopping"></i> إضافة للسلة</button>
+                    <a class="btn btn-wa-big" id="waBtn" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> اطلب عبر واتساب</a>
+                </div>
+                <a href="checkout.html" class="pp-cart-link">الذهاب إلى السلة وإتمام الطلب <i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+        </div>
+
+        <section class="related" id="related" hidden>
+            <div class="section-title"><h2>منتجات أخرى من نفس القسم</h2></div>
+            <div class="products-grid" id="relatedGrid"></div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="products-data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const product = findProduct(new URLSearchParams(location.search).get('id'));
+        let qty = 1;
+
+        function el(tag, text, css) {
+            const e = document.createElement(tag);
+            if (text) e.textContent = text;
+            if (css) e.style.cssText = css;
+            return e;
+        }
+
+        function renderDetails(d) {
+            const box = document.getElementById('ppDesc');
+            box.textContent = '';
+            const para = t => box.appendChild(el('p', t, 'margin-bottom:10px;'));
+            const head = t => box.appendChild(el('h4', t, 'color:var(--primary);margin:16px 0 8px;font-size:16px;'));
+            const list = arr => {
+                const ul = el('ul', '', 'margin-bottom:10px;');
+                arr.forEach(t => {
+                    const li = el('li', '', 'padding:4px 0;');
+                    li.appendChild(el('i', '', 'color:var(--primary);margin-left:8px;font-size:13px;')).className = 'fa-solid fa-circle-check';
+                    li.appendChild(document.createTextNode(t));
+                    ul.appendChild(li);
+                });
+                box.appendChild(ul);
+            };
+            (d.intro || []).forEach(para);
+            if (d.features && d.features.length) { head('المميزات'); list(d.features); }
+            if (d.ingredients && d.ingredients.length) { head('المكونات'); list(d.ingredients); }
+            if (d.usage) { head('طريقة الاستخدام'); para(d.usage); }
+            if (d.note) { head('تنبيه'); para(d.note); }
+        }
+
+        function updateWa() { document.getElementById('waBtn').href = whatsappLink(product, qty); }
+
+        function changeQty(d) {
+            qty = Math.max(1, qty + d);
+            document.getElementById('qtyVal').textContent = qty;
+            updateWa();
+        }
+
+        if (!product) {
+            document.getElementById('productPage').innerHTML =
+                '<div class="pp-notfound"><h2>المنتج غير موجود</h2><p style="margin:10px 0 20px;color:var(--gray)">ارجع للقائمة واختار منتج.</p><a href="index.html" class="btn btn-primary">العودة للقائمة</a></div>';
+        } else {
+            document.title = product.name + ' | Lēna Natural | موزعين';
+            document.getElementById('bcName').textContent = product.name;
+            document.getElementById('ppName').textContent = product.name;
+            document.getElementById('ppPrice').textContent = product.price + ' ج.م';
+            const im = document.getElementById('ppImg');
+            im.src = product.image; im.alt = productLabel(product);
+            document.getElementById('ppCat').textContent = CATEGORIES[product.category].label;
+            if (product.short) {
+                document.getElementById('ppSizeText').textContent = product.short;
+                document.getElementById('ppSize').hidden = false;
+            }
+            renderDetails(product.details || { intro: ['منتج طبيعي من Lēna Natural للعناية بجمالك. للاستفسار عن التفاصيل تواصل معنا على واتساب.'] });
+            updateWa();
+
+            const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+            if (related.length) {
+                related.forEach(p => document.getElementById('relatedGrid').appendChild(createProductCard(p)));
+                document.getElementById('related').hidden = false;
+            }
+        }
+    </script>
+</body>
+</html>
