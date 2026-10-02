@@ -1,5 +1,5 @@
 /* بيانات المتجر (نسخة الموزعين) — الأسعار هنا هي أسعار التوزيع */
-const STORE = { whatsapp: '201102523873', shipping: 80 };
+const STORE = { whatsapp: '201102523873', shipping: 100 };
 const CATEGORIES = {
     all:       { label: 'كل المنتجات',       icon: 'fa-border-all' },
     body:      { label: 'الجسم',             icon: 'fa-hand-holding-heart' },
